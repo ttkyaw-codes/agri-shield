@@ -1,0 +1,154 @@
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+:root {
+  /* Brand */
+  --primary: #25D162;
+  --primary-foreground: #ffffff;
+
+  /* Main */
+  --background: #F7FAF7;
+  --foreground: #172117;
+
+  /* Card */
+  --card: #FFFFFF;
+  --card-foreground: #172117;
+
+  /* Popover */
+  --popover: #FFFFFF;
+  --popover-foreground: #172117;
+
+  /* Secondary */
+  --secondary: #E8F5E9;
+  --secondary-foreground: #176B35;
+
+  /* Muted */
+  --muted: #EEF3EF;
+  --muted-foreground: #68736B;
+
+  /* Accent */
+  --accent: #DDF7E5;
+  --accent-foreground: #176B35;
+
+  /* Status */
+  --destructive: #EF4444;
+
+  /* Borders */
+  --border: #DCE5DE;
+  --input: #DCE5DE;
+  --ring: #25D162;
+
+  /* Radius */
+  --radius: 0.625rem;
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark {
+  /* Brand */
+  --primary: #25D162;
+  --primary-foreground: #06210F;
+
+  /* Main */
+  --background: #0B120D;
+  --foreground: #F1F8F3;
+
+  /* Card */
+  --card: #111A14;
+  --card-foreground: #F1F8F3;
+
+  /* Popover */
+  --popover: #111A14;
+  --popover-foreground: #F1F8F3;
+
+  /* Secondary */
+  --secondary: #17351F;
+  --secondary-foreground: #9AF2B5;
+
+  /* Muted */
+  --muted: #17221A;
+  --muted-foreground: #9AA79D;
+
+  /* Accent */
+  --accent: #183B23;
+  --accent-foreground: #A7F3BA;
+
+  /* Status */
+  --destructive: #F87171;
+
+  /* Borders */
+  --border: #26352A;
+  --input: #26352A;
+  --ring: #25D162;
+}
+
+
+/* =========================
+   BASE
+========================= */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    @apply font-sans;
+  }
+}
