@@ -1,5 +1,5 @@
-import VerifyOtpPage from "@/features/auth/pages/VerifyOtpPage";
+import VerifyOtpPage from "@/features/admin/auth/pages/VerifyOtpPage";
 
 export default function VerifyOTP() {
-    return <VerifyOtpPage/>;
+  return <VerifyOtpPage />;
 }

@@ -1,5 +1,17 @@
 import axios from "axios";
 export const fertilizerApiUrl=`${process.env.NEXT_PUBLIC_API_URL}fertilizers/`
+
+export const fetchFertilizers=(...args)=>{
+  return fetch(...args,{
+    method:"GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Token ${useAccountStore.getState().token}`,
+    },
+  }).then(res=>res.json())
+
+}
 export const storeFertilizer = (data) => {
   const formData = new FormData();
   formData.append("brand_name", " ");

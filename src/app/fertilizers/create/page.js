@@ -1,5 +1,5 @@
-import CategoryCreatePage from "@/features/dashboard/categories/pages/CategoryCreatePage";
+import CategoryCreatePage from "@/features/admin/categories/pages/CategoryCreatePage";
 
-export default function create(){
-    return <CategoryCreatePage/> ;
+export default function create() {
+  return <CategoryCreatePage />;
 }

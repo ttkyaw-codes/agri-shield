@@ -1,5 +1,5 @@
-import CategoryDetailPage from "@/features/dashboard/categories/pages/CategoryDetailPage";
+import CategoryDetailPage from "@/features/admin/categories/pages/CategoryDetailPage";
 
-export default function details(){
-   return   <CategoryDetailPage/>
+export default function details() {
+  return <CategoryDetailPage />;
 }

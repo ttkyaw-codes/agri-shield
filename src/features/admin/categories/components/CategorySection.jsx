@@ -5,9 +5,7 @@ import Pagnition from '@/components/Pagination'
 import ActionBar from '@/components/ActionBar'
 import { MenuBar } from '@/components/MenuBar'
 const CategorySection = () => {
- const handleLimit = (limit) => {
-    return "Hello"
-  }
+ 
   return (
    <>
      <div className="space-y-10">

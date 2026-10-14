@@ -1,12 +1,12 @@
+"use client";
 
-"use client"
+import React from "react";
+import ButtonSpinner from "@/components/ButtonSpinner";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useStoreCategory } from "../hooks/useCategory";
 
-import React from "react"
-import ButtonSpinner from "@/components/ButtonSpinner"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useStoreCateory } from "../hooks/useStoreCategory"
-import {toast} from "sonner"
+import { toast } from "sonner";
 const CategoryCreateForm = () => {
   const {
     register,
@@ -15,9 +15,9 @@ const CategoryCreateForm = () => {
     errors,
     reset,
     router,
-    onSubmit
-  } = useStoreCateory()
-toast.success("Hello")
+    onSubmit,
+  } = useStoreCategory();
+  toast.success("Hello");
   return (
     <form
       method="post"
@@ -25,7 +25,6 @@ toast.success("Hello")
       className="w-full space-y-6  dark:border-stone-800 dark:bg-stone-900 lg:w-2/3 xl:w-1/2"
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-
         {/* Product Name */}
         <div className="space-y-2">
           <Label
@@ -43,8 +42,7 @@ toast.success("Hello")
               required: "ထုတ်ကုန်အမည် ထည့်သွင်းရန် လိုအပ်ပါသည်။",
               minLength: {
                 value: 3,
-                message:
-                  "ထုတ်ကုန်အမည်သည် အနည်းဆုံး စာလုံး ၃ လုံး ရှိရပါမည်။",
+                message: "ထုတ်ကုန်အမည်သည် အနည်းဆုံး စာလုံး ၃ လုံး ရှိရပါမည်။",
               },
             })}
           />
@@ -73,8 +71,7 @@ toast.success("Hello")
               required: "ဓာတုအမည် ထည့်သွင်းရန် လိုအပ်ပါသည်။",
               minLength: {
                 value: 3,
-                message:
-                  "ဓာတုအမည်သည် အနည်းဆုံး စာလုံး ၃ လုံး ရှိရပါမည်။",
+                message: "ဓာတုအမည်သည် အနည်းဆုံး စာလုံး ၃ လုံး ရှိရပါမည်။",
               },
             })}
           />
@@ -157,8 +154,7 @@ toast.success("Hello")
             rows={3}
             placeholder="အသုံးပြုရမည့်အချိန်ကို ထည့်ပါ..."
             className="w-full rounded-md border border-stone-300 bg-transparent p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:border-stone-700 dark:text-white"
-             {...register("product_used_time"
-            )}
+            {...register("product_used_time")}
           />
 
           {errors.product_used_time && (
@@ -183,8 +179,7 @@ toast.success("Hello")
             placeholder="အသုံးပြုနိုင်သော ပမာဏကို ထည့်ပါ..."
             className="w-full rounded-md border border-stone-300 bg-transparent p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:border-stone-700 dark:text-white"
             {...register("product_used_limit", {
-              required:
-                "အသုံးပြုနိုင်သော ပမာဏ ထည့်သွင်းရန် လိုအပ်ပါသည်။",
+              required: "အသုံးပြုနိုင်သော ပမာဏ ထည့်သွင်းရန် လိုအပ်ပါသည်။",
               minLength: {
                 value: 3,
                 message:
@@ -215,8 +210,7 @@ toast.success("Hello")
             placeholder="ထုတ်ကုန်အကြောင်းအရာကို ထည့်ပါ..."
             className="w-full rounded-md border border-stone-300 bg-transparent p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:border-stone-700 dark:text-white"
             {...register("description", {
-              required:
-                "ထုတ်ကုန်ဖော်ပြချက် ထည့်သွင်းရန် လိုအပ်ပါသည်။",
+              required: "ထုတ်ကုန်ဖော်ပြချက် ထည့်သွင်းရန် လိုအပ်ပါသည်။",
               minLength: {
                 value: 3,
                 message:
@@ -247,8 +241,7 @@ toast.success("Hello")
             placeholder="ထုတ်ကုန်၏ အားသာချက်များကို ထည့်ပါ..."
             className="w-full rounded-md border border-stone-300 bg-transparent p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:border-stone-700 dark:text-white"
             {...register("advatage", {
-              required:
-                "ထုတ်ကုန်၏ အားသာချက် ထည့်သွင်းရန် လိုအပ်ပါသည်။",
+              required: "ထုတ်ကုန်၏ အားသာချက် ထည့်သွင်းရန် လိုအပ်ပါသည်။",
               minLength: {
                 value: 3,
                 message:
@@ -290,7 +283,7 @@ toast.success("Hello")
               {errors.all_correct.message}
             </span>
           )}
-           <div className="mb-4 flex items-center">
+          <div className="mb-4 flex items-center">
             <input
               {...register("back_to_fertilizers")}
               id="back-to-fertilizers"
@@ -302,7 +295,7 @@ toast.success("Hello")
               htmlFor="back-to-fertilizers"
               className="ml-2 text-sm font-medium text-stone-900 dark:text-stone-200"
             >
-             go to fertilizers page
+              go to fertilizers page
             </label>
           </div>
           {/* Buttons */}
@@ -328,7 +321,7 @@ toast.success("Hello")
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default CategoryCreateForm
+export default CategoryCreateForm;

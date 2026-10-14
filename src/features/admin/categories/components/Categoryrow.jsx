@@ -27,7 +27,6 @@ const CategoryRow = ({ invoice }) => {
   const handleDelete = (e) => {
     e.stopPropagation();
 
-    // Delete logic
   };
 
   return (
@@ -40,19 +39,19 @@ const CategoryRow = ({ invoice }) => {
       </TableCell>
 
       <TableCell className="py-4 font-medium">
-        {invoice.brandName}
+        {invoice.brand_name}
       </TableCell>
 
       <TableCell className="py-4 font-medium">
-        {invoice.productName}
+        {invoice.product_name}
       </TableCell>
 
       <TableCell className="py-4">
-        {invoice.price?.toLocaleString()} ကျပ်
+        {invoice.prices?.toLocaleString()} ကျပ်
       </TableCell>
 
       <TableCell className="py-4">
-        {invoice.chemical_type || "-"}
+        {invoice.chemical_name || "-"}
       </TableCell>
 
       <TableCell className="py-4">
