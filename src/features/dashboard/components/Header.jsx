@@ -24,7 +24,7 @@ const Header = ({ children }) => {
   const navItems = [
     { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
     { href: "/fertilizers", label: "Fertilizers", icon: Package },
-    { href: "/products", label: "Fertilizers", icon: Package },
+    { href: "/crops", label: "crops", icon: Package },
     { href: "/orders", label: "users", icon: Users }
   ];
 
