@@ -5,7 +5,7 @@ import React from "react"
 import ButtonSpinner from "@/components/ButtonSpinner"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useStoreCateory } from "../hooks/useStoreCategory"
+import {useStoreCategory} from "../hooks/useCategory"
 import {toast} from "sonner"
 const CategoryCreateForm = () => {
   const {
@@ -16,7 +16,7 @@ const CategoryCreateForm = () => {
     reset,
     router,
     onSubmit
-  } = useStoreCateory()
+  } = useStoreCategory()
 toast.success("Hello")
   return (
     <form

@@ -15,6 +15,7 @@ import CategoryListSkeleton from "./CategorySkeleton";
 import {useStoreCategory} from "../hooks/useCategory"
 
 const CategoryList = () => {
+  
   const {
     sortedFertilizers,
     sortBy,
@@ -29,6 +30,8 @@ const CategoryList = () => {
      <CategoryListSkeleton/>
     );
   }
+
+  
 
   if (error) {
     return (
@@ -115,10 +118,10 @@ const CategoryList = () => {
       </TableHeader>
 
       <TableBody className="text-sm md:text-base">
-        {sortedFertilizers.length === 0 ? (
+        {fertilizers.length === 0 ? (
           <CategoryEmptyStage />
         ) : (
-          sortedFertilizers.map((fertilizer) => (
+          fertilizers.map((fertilizer) => (
             <CategoryRow
               key={fertilizer.id}
               invoice={fertilizer}
