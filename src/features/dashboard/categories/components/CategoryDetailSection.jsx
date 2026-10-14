@@ -1,89 +1,161 @@
+"use client";
+
 import React from "react";
 
-const CategoryDetailSection = () => {
+const CategoryDetailSection = ({ fertilizer }) => {
+  if (!fertilizer) {
+    return (
+      <section className="p-6">
+        <div className="rounded-xl border bg-card p-8 text-center text-muted-foreground">
+          Fertilizer information not found.
+        </div>
+      </section>
+    );
+  }
+
+  const formatPrice = (price) => {
+    if (price === null || price === undefined || price === "") {
+      return "—";
+    }
+
+    const number = Number(price);
+
+    if (Number.isNaN(number)) {
+      return price;
+    }
+
+    return `${number.toLocaleString()} MMK`;
+  };
+
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
+    <section className="grid grid-cols-1 gap-8 p-6 lg:grid-cols-2">
       {/* Product Image */}
-      <div className="flex items-center justify-center rounded-xl bg-gray-100 p-8">
+      <div className="flex min-h-[400px] items-center justify-center rounded-xl border bg-muted/30 p-8">
         <img
-          src="/fertilizer.png"
-          alt="Fertilizer"
-          className="max-h-100 w-auto object-contain"
+          src={fertilizer.image || "/fertilizer.png"}
+          alt={fertilizer.product_name || "Fertilizer"}
+          className="max-h-[400px] w-auto object-contain"
         />
       </div>
 
       {/* Product Details */}
       <div className="space-y-6">
+        {/* Brand & Product Name */}
         <div>
           <p className="text-sm font-medium text-green-600">
-            Fertilizer
+            {fertilizer.brand_name || "Fertilizer"}
           </p>
 
-          <h1 className="mt-2 text-3xl font-bold text-gray-900">
-            Urea Fertilizer
+          <h1 className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">
+            {fertilizer.product_name || "Unnamed Fertilizer"}
           </h1>
 
-          <p className="mt-2 text-gray-500">
-            High-quality nitrogen fertilizer for crop growth
-          </p>
+          {fertilizer.chemical_name && (
+            <p className="mt-2 text-gray-500">
+              {fertilizer.chemical_name}
+            </p>
+          )}
         </div>
 
         {/* Price */}
-        <div>
+        <div className="rounded-xl bg-green-50 p-4 dark:bg-green-950/30">
           <p className="text-sm text-gray-500">Price</p>
-          <p className="text-2xl font-bold text-green-600">
-            3,000 MMK
+
+          <p className="mt-1 text-2xl font-bold text-green-600">
+            {formatPrice(fertilizer.prices)}
           </p>
         </div>
 
         {/* Product Information */}
-        <div className="grid grid-cols-2 gap-4 rounded-xl border p-4">
+        <div className="grid grid-cols-1 gap-4 rounded-xl border p-4 sm:grid-cols-2">
+          {/* Brand */}
           <div>
             <p className="text-sm text-gray-500">Brand</p>
-            <p className="font-semibold">Awba</p>
+            <p className="mt-1 font-semibold">
+              {fertilizer.brand_name || "—"}
+            </p>
           </div>
 
+          {/* Product */}
           <div>
-            <p className="text-sm text-gray-500">Product Type</p>
-            <p className="font-semibold">Urea</p>
+            <p className="text-sm text-gray-500">Product Name</p>
+            <p className="mt-1 font-semibold">
+              {fertilizer.product_name || "—"}
+            </p>
           </div>
 
+          {/* Chemical */}
           <div>
-            <p className="text-sm text-gray-500">Nutrient</p>
-            <p className="font-semibold">46% Nitrogen</p>
+            <p className="text-sm text-gray-500">Chemical Composition</p>
+            <p className="mt-1 font-semibold">
+              {fertilizer.chemical_name || "—"}
+            </p>
           </div>
 
+          {/* Usage Time */}
           <div>
-            <p className="text-sm text-gray-500">Usage</p>
-            <p className="font-semibold">Crop Growth</p>
+            <p className="text-sm text-gray-500">Usage Time</p>
+            <p className="mt-1 font-semibold">
+              {fertilizer.product_used_time || "—"}
+            </p>
+          </div>
+
+          {/* Usage Limit */}
+          <div>
+            <p className="text-sm text-gray-500">Usage Limit</p>
+            <p className="mt-1 font-semibold">
+              {fertilizer.product_used_limit || "—"}
+            </p>
+          </div>
+
+          {/* Price */}
+          <div>
+            <p className="text-sm text-gray-500">Price</p>
+            <p className="mt-1 font-semibold text-green-600">
+              {formatPrice(fertilizer.prices)}
+            </p>
           </div>
         </div>
 
         {/* Description */}
         <div>
-          <h2 className="text-lg font-semibold">
-            Description
-          </h2>
+          <h2 className="text-lg font-semibold">Description</h2>
 
-          <p className="mt-2 leading-7 text-gray-600">
-            Urea is a nitrogen-rich fertilizer commonly used to
-            support vegetative growth and improve crop development.
-            Apply according to the recommended dosage for the crop
-            and soil condition.
+          <p className="mt-2 leading-7 text-gray-600 dark:text-gray-300">
+            {fertilizer.description || "No description available."}
           </p>
         </div>
 
-        {/* Usage */}
+        {/* Advantage */}
         <div>
-          <h2 className="text-lg font-semibold">
-            Application
-          </h2>
+          <h2 className="text-lg font-semibold">Advantages</h2>
 
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-600">
-            <li>Apply around the crop root zone.</li>
-            <li>Use the recommended dosage.</li>
-            <li>Water the soil after application.</li>
-          </ul>
+          <p className="mt-2 leading-7 text-gray-600 dark:text-gray-300">
+            {fertilizer.advatage || "No advantages information available."}
+          </p>
+        </div>
+
+        {/* Application / Usage */}
+        <div>
+          <h2 className="text-lg font-semibold">Application</h2>
+
+          <div className="mt-2 rounded-xl border bg-muted/30 p-4">
+            <div className="space-y-3">
+              <div>
+                <p className="text-sm text-gray-500">Recommended Time</p>
+                <p className="font-medium">
+                  {fertilizer.product_used_time || "—"}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-500">Usage Limit</p>
+                <p className="font-medium">
+                  {fertilizer.product_used_limit || "—"}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
