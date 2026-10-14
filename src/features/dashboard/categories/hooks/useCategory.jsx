@@ -22,10 +22,16 @@ export const useStoreCategory = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchRef = useRef(null);
-
   const [fetchUrl, setFetchUrl] = useState(fertilizerApiUrl);
   const [sortBy, setSortBy] = useState("created_at");
   const [sortDirection, setSortDirection] = useState("desc");
+  const FILTER_KEYS = [
+    "date_from",
+    "date_to",
+    "price_min",
+    "price_max",
+    "chemical_name",
+  ];
 
   const {
     register,
@@ -95,7 +101,53 @@ export const useStoreCategory = () => {
     fetchUrl,
     fetchFertilizers
   );
+  const applyFilters = useCallback(
+    (draft) => {
+      const current = getCurrentParams();
+      const next = { ...current, page: 1 };
 
+      FILTER_KEYS.forEach((key) => {
+        const value = draft?.[key];
+        if (value === undefined || value === null || value === "") {
+          delete next[key];
+        } else {
+          next[key] = value;
+        }
+      });
+
+      updateUrlParams(next);
+    },
+    [getCurrentParams, updateUrlParams]
+  );
+
+  const clearFilter = useCallback(
+    (key) => {
+      const current = getCurrentParams();
+      const next = { ...current, page: 1 };
+      delete next[key];
+      updateUrlParams(next);
+    },
+    [getCurrentParams, updateUrlParams]
+  );
+
+  // Clear every filter
+  const resetFilters = useCallback(() => {
+    const current = getCurrentParams();
+    const next = { ...current, page: 1 };
+    FILTER_KEYS.forEach((k) => delete next[k]);
+    updateUrlParams(next);
+  }, [getCurrentParams, updateUrlParams]);
+
+  const filters = useMemo(() => {
+    const params = getCurrentParams();
+    return {
+      date_from: params.date_from ?? null,
+      date_to: params.date_to ?? null,
+      price_min: params.price_min ? Number(params.price_min) : null,
+      price_max: params.price_max ? Number(params.price_max) : null,
+      chemical_name: params.chemical_name ?? null,
+    };
+  }, [getCurrentParams]);
   // Support both paginated and unpaginated API responses.
   const fertilizers = useMemo(() => {
     if (Array.isArray(data)) {
@@ -222,6 +274,7 @@ export const useStoreCategory = () => {
   const onSubmit = async (formData) => {
     try {
       const payload = {
+        brand_name: formData.brand_name,
         product_name: formData.product_name,
         chemical_name: formData.chemical_name,
         product_used_time: formData.product_used_time,
@@ -306,5 +359,9 @@ export const useStoreCategory = () => {
     // URL
     router,
     updateUrlParams,
+     filters,
+    applyFilters,
+    clearFilter,
+    resetFilters,
   };
 };

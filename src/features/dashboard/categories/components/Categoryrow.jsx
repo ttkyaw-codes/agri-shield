@@ -55,7 +55,7 @@ const CategoryRow = ({ invoice }) => {
       </TableCell>
 
       <TableCell className="py-4">
-        {formatMyanmarDate(invoice.createdAt)}
+        {formatMyanmarDate(invoice.created_at)}
       </TableCell>
 
       <TableCell className="py-3">

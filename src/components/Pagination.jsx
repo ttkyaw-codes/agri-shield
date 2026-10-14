@@ -32,7 +32,7 @@ const Pagnition = ({
             </label>
             <select
               id="limit"
-            //   onChange={handleLimit}
+              onChange={handleLimit}
               className="h-10 text-sm border  border-stone-200 dark:bg-stone-800 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-700 dark:hover:text-white"
               value={currentLimit}
             >
