@@ -7,7 +7,6 @@ import { checkProfile } from "@/services/profile";
 import useAccountStore from "@/store/useAccountStore";
 import BackToLogin from "./BackToLogin";
 import Spinner from "@/components/Spinner";
-import NotFound from '@/components/NotFound';
 export default function DashboardMiddlware ({children}){
 
  const router = useRouter();
@@ -29,7 +28,7 @@ export default function DashboardMiddlware ({children}){
       autoLogoutIfTokenExpire(currentToken);
     }
     setIsLoading(false);
-  }, [token,Part]);
+  }, [token]);
 
   if (isLoading) {
     return (
@@ -41,10 +40,6 @@ export default function DashboardMiddlware ({children}){
 
   if (!useAccountStore.getState().token) {
     return <BackToLogin />;
-  }
-  if(Part!=1){
-    return <NotFound/>;
-  }
-     
+  }  
   return <>{children}</>;
 }
