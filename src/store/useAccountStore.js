@@ -6,27 +6,26 @@ const useAccountStore = create(
     (set) => ({
       account: null,
       token: null,
+      role: null,
 
-      // Save account and token after login
-      setAccount: (account, token) =>
-        set({
-          account,
-          token,
-        }),
+      // Save account information
+      setAccount: (account) => set({ account }),
+
+      // Save authentication token
+      setToken: (token) => set({ token }),
+
+      // Save user role: "user" or "admin"
+      setRole: (role) => set({ role }),
 
       // Update account information
-      updateAccount: (account) =>
-        set({ account }),
+      updateAccount: (account) => set({ account }),
 
-      // Update authentication token
-      setToken: (token) =>
-        set({ token }),
-
-      // Clear account and token after logout
+      // Clear session after logout
       logout: () =>
         set({
           account: null,
           token: null,
+          role: null,
         }),
     }),
     {
